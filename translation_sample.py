@@ -78,7 +78,7 @@ def delete_glossary(timeout=180):
 
 client = translate.TranslationServiceClient()
 glossary = client.glossary_path(project_id, location, glossary_id)
-glossary_config = translate.TranslateTextGlossaryConfig(glossary=glossary)
+glossary_config = translate.TranslateTextGlossaryConfig(glossary=glossary, ignore_case = True)
 
 import pandas as pd
 
@@ -98,6 +98,9 @@ print(synonym_df)
 #용어집을 삭제한다.
 #delete_glossary()
 
-translate_text_with_glossary("<from id='Hello'>Hello JK!, Hello <to id='@𝖿𝖺𝗇'></to></from>", "en", "ko", client, glossary_config)
+translate_text_with_glossary("<from id='Hello'>Hello jk!, Hello <to id='@𝖿𝖺𝗇'></to></from>", "en", "ko", client, glossary_config)
+
 translate_text_with_glossary("<from id='Hello'>Hello JK!, Hello <to id='@𝖿𝖺𝗇'>text</to></from>", "en", "ja", client, glossary_config)
+
 translate_text_with_glossary("Hello JK!, Hello <span translate='no'>@𝖿𝖺𝗇</span>", "en", "ko", client, glossary_config)
+
